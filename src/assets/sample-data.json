@@ -1,0 +1,182 @@
+[
+  {
+    "product": "Farine de blé pâtissière type 55",
+    "price": 0.85,
+    "weight": 1000,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Tagliatelle Barilla Collezione",
+    "price": 2.45,
+    "weight": 500,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Petits pois Cassegrain",
+    "price": 1.49,
+    "weight": 140,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Chips Lay's Recette Paysanne",
+    "price": 1.75,
+    "weight": 155,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Pesto poivrons & ricotta",
+    "price": 4.79,
+    "weight": 135,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Gaufres caramel Bjorg",
+    "price": 2.65,
+    "weight": 175,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Dragibus Haribo",
+    "price": 6.99,
+    "weight": 800,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Sucre en poudre bio",
+    "price": 3.09,
+    "weight": 500,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Maïs bio Géant Vert",
+    "price": 1.89,
+    "weight": 285,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  },
+  {
+    "product": "Pizza surgelée 4 fromages",
+    "price": 3.49,
+    "weight": 400,
+    "kgPrice": {
+      "operation": "price/weight*1000",
+      "value": null
+    },
+    "discount": null,
+    "salePrice": {
+      "operation": "price-(price*discount/100)",
+      "value": null
+    },
+    "saleKgPrice": {
+      "operation": "(price-(price*discount/100))/weight*1000",
+      "value": null
+    }
+  }
+]

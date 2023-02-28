@@ -1,0 +1,26 @@
+::ng-deep table input {
+  all: unset;
+  width: 100%;
+}
+
+::ng-deep table td {
+  transition: all .2s;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+}
+
+::ng-deep table td:focus-within,
+::ng-deep table td.highlight {
+  background-color: hsl(0, 0%, 96%) !important;
+  outline-color: #999;
+}
+
+::ng-deep table th span {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+.operation_input {
+  font-weight: bold;
+}
