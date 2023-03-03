@@ -20,6 +20,7 @@ export class TableComponent implements OnInit {
         this.dataset.forEach((item: any) => this.onOperationChange(item, col.field))
       })
       console.table(this.dataset)
+      console.log(this)
     })
 
 
