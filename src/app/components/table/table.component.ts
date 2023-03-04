@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {MenuItem} from 'primeng/api';
 
 
 @Component({
@@ -19,11 +19,20 @@ export class TableComponent implements OnInit {
         if (col.type !== "OPERATION") return;
         this.dataset.forEach((item: any) => this.onOperationChange(item, col.field))
       })
-      console.table(this.dataset)
-      console.log(this)
+      console.log(this.columns)
+
+      this.generateHeaderGroups()
+
+      // setInterval(() => {
+      //   const random = new Date().getMilliseconds().toString()[0];
+      //   console.log(this.columns[Number(random) - 1])
+      //   this.columns = this.columns.filter((col: any, i: number) => i !== Number(random) - 1);
+      //   this.generateHeaderGroups();
+      // }, 2000);
+
+
+
     })
-
-
 
   }
 
@@ -31,16 +40,39 @@ export class TableComponent implements OnInit {
 
   }
 
+  headerGroups: any = [[]];
+
+  generateHeaderGroups() {
+    const headers: any = [];
+    this.columns.forEach((col: any, i: number) => {
+      if (i === 0) {
+        headers.push({
+          header: col.headerGroup,
+          colspan: 1,
+        });
+      } else if (this.columns[i - 1].headerGroup !== col.headerGroup) {
+        headers.push({
+          header: col.headerGroup,
+          colspan: 1,
+        });
+      } else {
+        headers[headers.length - 1].colspan += 1;
+      }
+    });
+    this.headerGroups[0] = headers;
+  }
+
+
   columns: any[] = [
-    { field: "product", header: "Product", type: "TEXT" },
-    { field: "weight", header: "Weight", type: "NUMBER" },
-    { field: "price", header: "Price", type: "NUMBER", options: {
+    { field: "product", header: "Product", type: "TEXT"},
+    { field: "weight", header: "Weight", type: "NUMBER", headerGroup: "Product details" },
+    { field: "price", header: "Price", type: "NUMBER", headerGroup: "Base price", options: {
       highlightColor: "#fce7f3"
     } },
-    { field: "kgPrice", header: "Price/kg", type: "OPERATION" },
-    { field: "discount", header: "Discount (%)", type: "NUMBER" },
-    { field: "salePrice", header: "Sale price", type: "OPERATION" },
-    { field: "saleKgPrice", header: "Sale price/kg", type: "OPERATION" },
+    { field: "kgPrice", header: "Price/kg", type: "OPERATION", headerGroup: "Base price" },
+    { field: "discount", header: "Discount (%)", type: "NUMBER", headerGroup: "Promo" },
+    { field: "salePrice", header: "Sale price", type: "OPERATION", headerGroup: "Promo" },
+    { field: "saleKgPrice", header: "Sale price/kg", type: "OPERATION", headerGroup: "Promo" },
   ]
 
   log(LOG: any) {
@@ -63,10 +95,31 @@ export class TableComponent implements OnInit {
   columnInput: string = '';
   onContextMenu(e: Event, col: any, index: number) {
     e.preventDefault()
-    col.index = index;
-    this.columnInput = '';
-    this.selectedColumn = col;
-    this.inputDialogVisible = true;
+
+    // col.index = index;
+    // this.columnInput = '';
+    // this.selectedColumn = col;
+    // this.inputDialogVisible = true;
+  }
+
+  contextMenuItems = [
+    {label: 'View', icon: 'pi pi-fw pi-search', command: () => this.log('view')},
+        {label: 'Delete', icon: 'pi pi-fw pi-times', command: () => this.log('delete')}
+];
+
+  onTableHeaderContextMenu(e: MouseEvent, header: string, isHeaderGroup: boolean) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+      const headerType = isHeaderGroup ? 'headerGroup' : 'header';
+      this.columns = this.columns.filter((col: any) => col[headerType] !== header)
+      this.generateHeaderGroups()
+      this.hoveredHeaderGroup = '';
+    }
+  }
+
+  hoveredHeaderGroup: string = '';
+  onTableHeaderHover(e: MouseEvent, header: string, isHeaderGroup: boolean) {
+    this.hoveredHeaderGroup = e.ctrlKey ? header : '';
   }
 
   setColumnValue(form: HTMLFormElement) {

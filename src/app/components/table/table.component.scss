@@ -24,3 +24,25 @@
 .operation_input {
   font-weight: bold;
 }
+
+.table-header-group th:empty {
+  visibility: hidden;
+  padding: 0;
+}
+
+.table-header-group th {
+  border-bottom: unset;
+  cursor: default;
+}
+
+.table-header-group th.group-hover:hover {
+  background-color: #fb923c22;
+}
+
+::ng-deep table tr:hover + tr .group-hover {
+  background-color: #fb923c22 !important;
+}
+
+th:not(.group-hover) + .group-hover {
+  // border-left-color: #000;
+}

@@ -13,6 +13,9 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonModule } from 'primeng/button';
+import {ContextMenuModule} from 'primeng/contextmenu';
+
+
 
 
 
@@ -31,7 +34,8 @@ import { ButtonModule } from 'primeng/button';
     DialogModule,
     InputTextModule,
     TooltipModule,
-    ButtonModule
+    ButtonModule,
+    ContextMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
