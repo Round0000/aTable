@@ -1,16 +1,27 @@
 <p-table [loading]="!this.dataset" sortMode="multiple" styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm" [value]="dataset" [tableStyle]="{'min-width': '50rem'}">
   <ng-template pTemplate="header">
 
-
+    <!--
     <tr class="table-header-group" *ngFor="let row of headerGroups">
       <th *ngFor="let cell of row" [attr.colspan]="cell.colspan" [attr.rowspan]="cell.rowspan" (mousemove)="onTableHeaderHover($event, cell.header, true)" (contextmenu)="onTableHeaderContextMenu($event, cell.header, true)" [class.group-hover]="hoveredHeaderGroup === cell.header" (mouseleave)="hoveredHeaderGroup = ''">{{ cell.header }}</th>
     </tr>
+    -->
+
+    <tr class="table-header-group" *ngFor="let row of groups">
+      <th *ngFor="let item of row; let index = index" [attr.colspan]="item.colspan">{{ item.header }}</th>
+    </tr>
+    <tr>
+      <th *ngFor="let th of displayedCols; let index = index" (click)="getGroup(index)" (contextmenu)="hideCol(index)">{{ th.header }}</th>
+    </tr>
+    <!--
 
       <tr>
           <th *ngFor="let column of columns; let headerColIndex = index" [pTooltip]="column.field" (contextmenu)="onTableHeaderContextMenu($event, column.header, false)" [class.group-hover]="hoveredHeaderGroup === column.headerGroup" [pSortableColumn]="column.type === 'OPERATION' ? column.field['value'] : column.field">
             <span>{{ column.header }} <i *ngIf="column.type === 'OPERATION'" class="pi pi-code"></i></span>
           </th>
       </tr>
+          -->
+
   </ng-template>
   <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
       <tr>

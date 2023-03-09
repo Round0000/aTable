@@ -10,7 +10,52 @@ import {MenuItem} from 'primeng/api';
 export class TableComponent implements OnInit {
   @Input() dataset:any;
 
+  // Simpler colGroups
+  colsMap: any = []
+
+  groups: any = [
+    [
+      { header: "ABC", colspan: 3, rowspan: 1 },
+      { header: "DEF", colspan: 3, rowspan: 1 },
+      // { header: "G", colspan: 1, rowspan: 3 },
+    ],
+    [
+      { header: "AB", colspan: 2, rowspan: 1 },
+      { header: "C", colspan: 1, rowspan: 2 },
+      { header: "DE", colspan: 2, rowspan: 1 },
+      { header: "F", colspan: 1, rowspan: 2 },
+    ],
+  ]
+
+  cols: any = [
+    { header: 'A' }, { header: 'B' }, { header: 'C' }, { header: 'D' }, { header: 'E' }, { header: 'F' }, { header: 'G' },
+  ]
+
+  displayedCols: any = []
+
+  getGroup(i: number) {
+    this.colsMap.forEach((row: any) => {
+      console.log(row[i])
+    })
+  }
+
+  hideCol(i: number) {
+    this.displayedCols = this.displayedCols.filter((col: any, idx: number) => idx !== i)
+
+  }
+
   ngOnInit(): void {
+
+    this.groups.forEach((group: any) => {
+      let row: any = [];
+      // this.colsMap.push([...Array(row)])
+      group.forEach((th: any) => {
+        row = [...row, ...Array(th.colspan).fill(th.header)]
+      })
+      this.colsMap.push(row)
+    })
+    this.displayedCols = [...this.cols];
+
     fetch('../assets/sample-data.json')
     .then((res: any) => res.json())
     .then((data: any) => {
@@ -19,7 +64,20 @@ export class TableComponent implements OnInit {
         if (col.type !== "OPERATION") return;
         this.dataset.forEach((item: any) => this.onOperationChange(item, col.field))
       })
-      console.log(this.columns)
+      // console.log(this.columns)
+      // this.colGroups.forEach(item => {
+      //   console.log(item)
+      //   if (item?.children) {
+      //     item.children.forEach(item => {
+      //       console.log(item)
+      //       if (item?.children) {
+      //         item.children.forEach(item => {
+      //           console.log(item)
+      //         })
+      //       }
+      //     })
+      //   }
+      // })
 
       this.generateHeaderGroups()
 
@@ -35,6 +93,10 @@ export class TableComponent implements OnInit {
     })
 
   }
+
+
+
+  //
 
   constructor() {
 
@@ -62,6 +124,37 @@ export class TableComponent implements OnInit {
     this.headerGroups[0] = headers;
   }
 
+  // MORE HEADER COLGROUPS
+  colGroups = [
+      {
+        header: 'Highest',
+        children: [
+          {
+            header: 'Mid ABC',
+            children: [
+              { header: 'product', visible: true },
+              { header: 'weight', visible: true },
+            ]
+          },
+          {
+            header: 'Mid DEF',
+            children: [
+              { header: 'price', visible: true },
+              { header: 'kgPrice', visible: true },
+            ]
+          },
+          {
+            header: 'Mid GHI',
+            children: [
+              { header: 'discount', visible: true },
+              { header: 'salePrice', visible: true },
+              { header: 'saleKgPrice', visible: true },
+            ]
+          }
+        ]
+      }
+  ]
+
 
   columns: any[] = [
     { field: "product", header: "Product", type: "TEXT"},
@@ -76,7 +169,7 @@ export class TableComponent implements OnInit {
   ]
 
   log(LOG: any) {
-    console.log({LOG})
+    console.log(LOG)
   }
 
   getCellValue(col: number, row: number) {
